@@ -1,0 +1,47 @@
+{
+  "pages":[
+    "pages/film/film",
+    "pages/film/upcoming/film",
+    "pages/film/top/film",
+    "pages/film/video/video",
+    "pages/film/video2/video2",
+    "pages/film/user/user",
+    "pages/film/find/find",
+    "pages/film/detail/detail"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#bb99ff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar":{  
+      "selectedColor":"#ccb3ff",  
+      "color": "#999",  
+      "backgroundColor":"#eee5ff",
+      "position":"bottom",  
+      "list":[{  
+          "text" : "正在热映",  
+          "pagePath" : "pages/film/film",
+          "iconPath": "img/noshow.png",
+          "selectedIconPath": "img/show.png"
+      },{  
+          "text" : "即将上映",  
+          "pagePath" : "pages/film/upcoming/film",
+          "iconPath": "img/noupcoming.png",
+          "selectedIconPath": "img/upcoming.png"
+      },
+      {
+        "text": "排行榜",
+        "pagePath": "pages/film/top/film",
+        "iconPath": "img/nopaihang.png",
+        "selectedIconPath": "img/paihang.png"
+      }]
+  },
+  "plugins": {
+    "tencentVideo": {
+      "version": "1.1.1",
+      "provider": "wxa75efa648b60994b"
+    }
+  }
+}

@@ -1,0 +1,115 @@
+<!-- detail.wxml -->
+<view class='detail'>
+	<view style='width:100%;height:230px;background-image: url("{{detail.images.large}}");background-repeat: no-repeat;background-size: 100%;position:absolute;z-index:-1;opacity:1;filter: blur(21px);'>
+	</view>
+	<view class="top">
+		<view class='clearfix'>
+			<view class='left pull-left' bindtap='bofang' data-id='{{detail.id}}' data-title='{{detail.title}}'>
+				<image src='{{detail.images.large}}' style='width:185rpx;height:260rpx;'/>	
+        <image src='/img/bofang3.png' style='width:60rpx;height:60rpx;float:right;position: absolute;top:120rpx;left:88rpx;'/>	
+			</view>
+			<view class='right pull-left'>
+				<view>
+					<title style='color:#fff;font-size:16px;'>{{detail.title}}</title><text style='font-size:10px;'>{{detail.countries}}[{{detail.year}}]</text><title style='color:#ff9900;font-size:20px;float:right;position: absolute;top:6rpx;right:20rpx;'>{{detail.rating.average}}</title><text style='font-size:8px;float:right;position: absolute;top:58rpx;right:10rpx;'>（{{detail.ratings_count}}人评）</text>
+				</view>
+				<view>
+					<text style='color:#cc33ff;font-size:12px;'>{{detail.genres}}</text>
+				</view>
+        <view>
+          <view>上映时间</view>
+          <view wx:for='{{detail.pubdates}}'>{{item}}   </view>
+				</view>
+        <!--<view>
+          <text style='color:#fff;font-size:12px;'>豆瓣评分：</text>
+          <title style='color:#ff9900;font-size:16px;'>{{detail.rating.average}}</title><text style='font-size:8px;'>（{{detail.ratings_count}}人评）</text>
+				</view>
+				<view>
+					<text>{{detail.cat}}
+						<text class="threeD" wx:if='{{detail["3d"]}}'>3D</text>
+						<text class='imax' wx:if='{{detail.imax}}'>IMAX</text>
+					</text>
+				</view>-->
+				<view>
+					时长：
+          <view class='type' wx:for='{{detail.durations}}'>{{item}}   </view>
+				</view>
+        <!--<view class="btns">
+          <text style='font-size:12px'>{{detail.wish_count}}  想看</text>
+          <text style='color:#cc33ff;font-size:16px'>  评分</text><text style='font-size:12px;'>  ({{detail.}})</text>
+        </view>-->
+				<!--<view>
+					<text>{{detail.summary}}</text>
+				</view>-->
+			</view>
+		</view>
+    <!-- 腾讯视频播放插件-->
+      <!--<txv-video vid="k0027ed75of" playerid="txv1" autoplay="true"></txv-video>-->
+    <!--<view>
+      <text style='font-size:12px'>{{detail.summary}}</text>
+    </view>
+    <view>
+      <text style='font-size:12px'>{{detail.blooper_urls[0]}}</text>
+    </view>
+    <video id="myVideo" src="{{detail.blooper_urls[0]}}" binderror="videoErrorCallback" enable-danmu danmu-btn controls></video>
+    <!--<video id="myVideo" src="http://v.qq.com/x/cover/1o29ui77e85grdr.html?ptag=douban.movie" binderror="videoErrorCallback" enable-danmu danmu-btn controls></video>
+    <web-view src="https://movie.douban.com/subject/26336252/mobile">111111111111111111111111</web-view>-->
+	</view>
+	<view class="info">
+		<view class='text'>
+			<text style='{{hideText ? "-webkit-line-clamp: 2" : ""}}'>{{detail.summary}}</text>
+		</view>
+		<view class='controlText {{hideClass}}' bindtap='toggleText'>
+			<text></text>
+		</view>
+	</view>
+	<!--<view class='preferential-purchase'>
+		<text>优惠购买</text>
+	</view>-->
+  <view class="scrool-left">
+    <scroll-view scroll-x="true" style="white-space: nowrap; display: block" class="showmian">
+      <view class="w20 hovertxt" wx:for="{{detail.directors}}" data-name="{{item.name}}" bindtap='userDetail' data-image='{{item.avatars.small}}'>
+        <image style="width:200rpx;margin: 0.2rpx 10rpx 0.2rpx 10rpx;height: 300rpx;" src='{{item.avatars.medium}}' />
+        <view style='font-size:16px;'>{{item.name}}</view>	
+        <view style='font-size:10px;'>导演</view>	
+      </view> 
+      <view class="w20 hovertxt" wx:for="{{detail.casts}}" data-name="{{item.name}}" bindtap='userDetail' data-image='{{item.avatars.small}}'>
+        <image style="width:200rpx;margin: 0.2rpx 10rpx 0.2rpx 10rpx;height: 300rpx;" src='{{item.avatars.medium}}' />
+        <view style='font-size:16px;'>{{item.name}}</view>	
+        <view style='font-size:10px;'>主演</view>	
+      </view> 
+    </scroll-view>
+  </view>
+  <view class="scrool-left">
+    <scroll-view scroll-x="true" style="white-space: nowrap; display: block" class="showmian">
+      <view class="w20 hovertxt" wx:for="{{detail.photos}}" bindtap='previewImage' data-thumb='{{item.thumb}}'>
+        <image style="width:200rpx;margin: 0.2rpx 10rpx 0.2rpx 10rpx;height: 300rpx;" src='{{item.thumb}}' mode="aspectFit"/>
+        <view style='font-size:10px;'>剧照</view>	
+      </view> 
+    </scroll-view>
+  </view>
+  <view class="comment">
+		<view style='padding:5px 20px;font-size:14px;border-bottom:1px solid #ccc;border-top:1px solid #ccc'>
+			<text>最新影评</text>
+		</view>
+		<view class='item' wx:for='{{detail.popular_comments}}' wx:key='{{index}}'>
+			<view class='img'>
+				<image src='{{item.author.avatar}}' />
+			</view>
+			<view class='main'>
+				<view class='nickname'>{{item.author.name}}<text style='font-size:10px;'>    {{item.author.signature}}</text></view>
+        <image wx:for='{{item.rating.value}}'src='/img/pingfen.png' mode="aspectFit" style='width:30rpx;'/>
+				<view class='content'>{{item.content}}</view>
+			</view>
+		</view>
+    <view class='item' wx:for='{{detail.popular_reviews}}' wx:key='{{index}}'>
+			<view class='img'>
+				<image src='{{item.author.avatar}}' />
+			</view>
+			<view class='main'>
+				<view class='nickname'>{{item.author.name}}<text style='font-size:10px;'>    {{item.author.signature}}</text></view>
+        <image wx:for='{{item.rating.value}}'src='/img/pingfen.png' mode="aspectFit" style='width:30rpx;'/>
+				<view class='content'>{{item.summary}}</view>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,19 @@
+
+.weui-cells{
+  margin-top: 80rpx;
+  text-align: left;
+}
+.weui-label{
+  width: 5em;
+}
+.item image{
+	width:200px;
+	height:100px;
+  padding-top: 10px;
+}
+.title{
+  padding-top: 10px;
+  float: right;
+  font-size: 16px;
+  width: 210px;
+}

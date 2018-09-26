@@ -1,0 +1,41 @@
+<!--index.wxml-->
+<scroll-view class='films' scroll-y="true" bindscrolltolower="lower" bindscrolltoupper="bindscrolltoupper" style="height:{{scrollHeight}}px" >
+	<!--<view class='top'>
+		<view class='position'>
+			<text>北京</text>
+		</view>
+		<view class='search'>
+			<view><icon type='search' size='18' />找影视剧、影院</view>
+		</view>
+	</view>-->
+	<view class='main'>
+		<view wx:for='{{films}}' class='film' wx:key='{{index}}'>
+			<view style='margin-left:10px;display: flex;border-bottom:1px solid #ccc;'>
+				<view class='image'>
+					<image src="{{item.images.small}}" bindtap='previewImage' data-small='{{item.images.small}}' data-medium='{{item.images.medium}}' data-large='{{item.images.large}}'></image>
+				</view>
+				<view class='detail' bindtap='bindDetail' data-id='{{item.id}}'>
+					<title>{{item.title}}
+						<!--<text class="threeD" wx:if='{{item["3d"]}}'>3D</text>
+						<text class='imax' wx:if='{{item.imax}}'>IMAX</text>
+						<text class='score' wx:if='{{item.preSale !== 1}}'>{{item.rating.average}}<text style='font-size:12px'> 分</text></text>
+						<text class='wish' wx:else>{{item.wish}}<text style='font-size:12px'>想看</text></text>-->
+					</title>
+					<view class='type'>
+						{{item.genres}}
+					</view>
+					<view class='star'>
+            <text class='type' wx:for="{{item.casts}}">{{item.name}}    </text>
+					</view>
+					<!--<view class='showInfo'>
+						{{item.genres}}
+					</view>-->
+					<!--<button type='warn' size='mini' class='buy' wx:if='{{item.preSale !== 1}}'>购买</button>
+					<button type='warn' size='mini' style='background: #007fef' class='buy' wx:else>预售</button>-->
+				</view>
+			</view>
+		</view>
+		<view class='loading' hidden='{{!loading}}'>正在加载...</view>
+		<view class='complete' hidden='{{!comp}}'>已加载所有数据！</view>
+	</view>
+</scroll-view>
