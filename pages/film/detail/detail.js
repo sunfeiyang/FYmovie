@@ -100,5 +100,44 @@ Page({
       urls: urls
       // urls必须是数组 不然会报错  
     })
+  },    
+  modalcnt:function(){
+    wx.showModal({
+      title: '评分详情：',
+      content: '1星：25689人</br>2星：25689人',
+      cancel:'',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  //打开评分详情
+  showRule: function () {
+    this.setData({
+      isRuleTrue: true
+    })
+  },
+  //关闭评分详情
+  hideRule: function () {
+    this.setData({
+      isRuleTrue: false
+    })
+  },
+  moreComments: function (event) {
+    const id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../comments/comments?id=' + id
+    })
+  },
+  morePhoto: function (event) {
+    const id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../photo/photo?id=' + id
+    })
   }
+
 })

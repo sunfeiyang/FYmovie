@@ -10,7 +10,7 @@
 			</view>
 			<view class='right pull-left'>
 				<view>
-					<title style='color:#fff;font-size:16px;'>{{detail.title}}</title><text style='font-size:10px;'>{{detail.countries}}[{{detail.year}}]</text><title style='color:#ff9900;font-size:20px;float:right;position: absolute;top:6rpx;right:20rpx;'>{{detail.rating.average}}</title><text style='font-size:8px;float:right;position: absolute;top:58rpx;right:10rpx;'>（{{detail.ratings_count}}人评）</text>
+					<title style='color:#fff;font-size:16px;'>{{detail.title}}</title><text style='font-size:10px;'>{{detail.countries}}[{{detail.year}}]</text><title style='color:#ff9900;font-size:20px;float:right;position: absolute;top:6rpx;right:20rpx;' bindtap="showRule">{{detail.rating.average}}</title><text style='font-size:8px;float:right;position: absolute;top:58rpx;right:10rpx;'>（{{detail.ratings_count}}人评）</text>
 				</view>
 				<view>
 					<text style='color:#cc33ff;font-size:12px;'>{{detail.genres}}</text>
@@ -42,8 +42,8 @@
 				</view>-->
 			</view>
 		</view>
-    <!-- 腾讯视频播放插件-->
-      <!--<txv-video vid="k0027ed75of" playerid="txv1" autoplay="true"></txv-video>-->
+    <!-- 腾讯视频播放插件
+      <txv-video vid="u0019esirxq" playerid="txv1" autoplay="true"></txv-video>-->
     <!--<view>
       <text style='font-size:12px'>{{detail.summary}}</text>
     </view>
@@ -72,6 +72,11 @@
         <view style='font-size:16px;'>{{item.name}}</view>	
         <view style='font-size:10px;'>导演</view>	
       </view> 
+      <view class="w20 hovertxt" wx:for="{{detail.writers}}" data-name="{{item.name}}" bindtap='userDetail' data-image='{{item.avatars.small}}'>
+        <image style="width:200rpx;margin: 0.2rpx 10rpx 0.2rpx 10rpx;height: 300rpx;" src='{{item.avatars.medium}}' />
+        <view style='font-size:16px;'>{{item.name}}</view>	
+        <view style='font-size:10px;'>编剧</view>	
+      </view> 
       <view class="w20 hovertxt" wx:for="{{detail.casts}}" data-name="{{item.name}}" bindtap='userDetail' data-image='{{item.avatars.small}}'>
         <image style="width:200rpx;margin: 0.2rpx 10rpx 0.2rpx 10rpx;height: 300rpx;" src='{{item.avatars.medium}}' />
         <view style='font-size:16px;'>{{item.name}}</view>	
@@ -85,20 +90,22 @@
         <image style="width:200rpx;margin: 0.2rpx 10rpx 0.2rpx 10rpx;height: 300rpx;" src='{{item.thumb}}' mode="aspectFit"/>
         <view style='font-size:10px;'>剧照</view>	
       </view> 
+      <text style='font-size:14px;color:#646464;padding-right:10rpx;' bindtap='morePhoto'  data-id='{{detail.id}}' >更多...</text>	
     </scroll-view>
   </view>
   <view class="comment">
 		<view style='padding:5px 20px;font-size:14px;border-bottom:1px solid #ccc;border-top:1px solid #ccc'>
 			<text>最新影评</text>
+      <text style='font-size:12px;color:#646464;padding-right:8rpx;float:right;' bindtap='moreComments' data-id='{{detail.id}}' >更多...</text>	
 		</view>
 		<view class='item' wx:for='{{detail.popular_comments}}' wx:key='{{index}}'>
 			<view class='img'>
 				<image src='{{item.author.avatar}}' />
 			</view>
 			<view class='main'>
-				<view class='nickname'>{{item.author.name}}<text style='font-size:10px;'>    {{item.author.signature}}</text></view>
-        <image wx:for='{{item.rating.value}}'src='/img/pingfen.png' mode="aspectFit" style='width:30rpx;'/>
-				<view class='content'>{{item.content}}</view>
+				<view class='nickname'>{{item.author.name}}<text style='font-size:12px;'>    {{item.author.signature}}</text></view>
+        <view style='font-size:10px;'>    {{item.created_at}}</view><image wx:for='{{item.rating.value}}'src='/img/pingfen.png' mode="aspectFit" style='width:30rpx;'/>
+				<view class='content' style='font-size:14px;color:#777;' >{{item.content}}</view>
 			</view>
 		</view>
     <view class='item' wx:for='{{detail.popular_reviews}}' wx:key='{{index}}'>
@@ -106,10 +113,23 @@
 				<image src='{{item.author.avatar}}' />
 			</view>
 			<view class='main'>
-				<view class='nickname'>{{item.author.name}}<text style='font-size:10px;'>    {{item.author.signature}}</text></view>
-        <image wx:for='{{item.rating.value}}'src='/img/pingfen.png' mode="aspectFit" style='width:30rpx;'/>
-				<view class='content'>{{item.summary}}</view>
+				<view class='nickname'  style='font-size:18px;color:#ccb3ff;' >{{item.title}}</view><image wx:for='{{item.rating.value}}'src='/img/pingfen.png' mode="aspectFit" style='width:30rpx;'/>
+				<view class='nickname'>{{item.author.name}}<text style='font-size:12px;'>    {{item.author.signature}}</text></view>
+				<view class='content' style='font-size:14px;color:#777;' >{{item.summary}}</view>
 			</view>
 		</view>
 	</view>
 </view>
+
+<!--  评分详情  -->
+<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}" catchtouchmove="true">
+    <view class='ruleZhezhaoContent'>
+      <view class='ruleZhezhaoText' wx:for='{{detail.rating.details}}' >    
+        <text class='color:#777'>{{index}}</text><image src='/img/pingfen.png' mode="aspectFit" style='width:30rpx;'/>
+        <text>    {{item}}人</text>
+      </view>
+      <image src='/img/close.png' class='ruleHide' bindtap='hideRule'></image>
+    </view>
+</view>
+<!--  end  -->
+

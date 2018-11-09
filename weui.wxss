@@ -156,11 +156,12 @@ icon {
   word-wrap: break-word;
   word-break: break-all;
 }
+/*
 .weui-input {
   height: 2.58823529em;
   min-height: 2.58823529em;
   line-height: 2.58823529em;
-}
+}*/
 .weui-toptips {
   position: fixed;
   -webkit-transform: translateZ(0);

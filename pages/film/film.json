@@ -1,3 +1,4 @@
 {
-	"navigationBarTitleText": "FYmovie"
+	"navigationBarTitleText": "FYmovie",
+  "enablePullDownRefresh":false
 }

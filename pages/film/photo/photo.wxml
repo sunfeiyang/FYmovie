@@ -1,0 +1,7 @@
+<scroll-view class='comment' scroll-y="true" bindscrolltolower="lower" bindscrolltoupper="bindscrolltoupper" style="height:{{scrollHeight}}px" >
+  <view wx:for='{{detail}}' wx:key='{{index}}'  style='align-items: center;justify-content: center;'>
+    <image style="width:420px" src='{{item.image}}' mode="aspectFit"  bindtap='previewImage' data-image='{{item.image}}'/>
+  </view>
+  <view class='loading' hidden='{{!loading}}'>正在加载...</view>
+  <view class='complete' hidden='{{!comp}}'>已加载所有数据！</view>     
+</scroll-view>

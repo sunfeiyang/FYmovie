@@ -87,51 +87,51 @@ Page({
     //加载电影
   loadFilms(pageNum){
     console.log("******comp******" + comp);
-        const that = this;
-        wx.request({
-          url: 'https://douban.uieee.com/v2/movie/coming_soon',
-          data: {
-            start: start,
-            count: pageNum
-          },
-          header: {
-            "Content-Type": "json"
-          },
-          success(res) {
-            urls = []
-            let data = res.data.subjects;
-            //console.log("******data.size******: " + data.length);
-            for (let i = 0; i < data.length; i++) {
-              //console.log("******data[i]******: " + data[i]);
-              //films.join(data[i]);
-              films.push(data[i]);
-              //console.log("******films******: " + films);
-            }
-            //console.log("******data******: " + data);
-            //films.join(data);
+      const that = this;
+      wx.request({
+        url: 'https://douban.uieee.com/v2/movie/coming_soon',
+        data: {
+          start: start,
+          count: pageNum
+        },
+        header: {
+          "Content-Type": "json"
+        },
+        success(res) {
+          urls = []
+          let data = res.data.subjects;
+          //console.log("******data.size******: " + data.length);
+          for (let i = 0; i < data.length; i++) {
+            //console.log("******data[i]******: " + data[i]);
+            //films.join(data[i]);
+            films.push(data[i]);
             //console.log("******films******: " + films);
-            //let films = res.data.subjects; 
-            total = res.data.total;//所有数据总条数
-            sum = Math.ceil(total / pageSize);//加载次数
-            that.setData({
-              films: films,
-              total: total,
-              loading: isload,
-              completed: comp,
-              sum: sum,
-              urls: urls
-            });
-          },
-          fail: function (e) {
-            console.log("******error******: ", e);
-          },
-          complete: function (e) {
-            console.log("******请求完成****** ", e);
-            //this.setData({
-              //last_update: result.last_update
-            //});
           }
-        })
+          //console.log("******data******: " + data);
+          //films.join(data);
+          //console.log("******films******: " + films);
+          //let films = res.data.subjects; 
+          total = res.data.total;//所有数据总条数
+          sum = Math.ceil(total / pageSize);//加载次数
+          that.setData({
+            films: films,
+            total: total,
+            loading: isload,
+            completed: comp,
+            sum: sum,
+            urls: urls
+          });
+        },
+        fail: function (e) {
+          console.log("******error******: ", e);
+        },
+        complete: function (e) {
+          console.log("******请求完成****** ", e);
+          //this.setData({
+            //last_update: result.last_update
+          //});
+        }
+      })
     },
     bindDetail(e){
         const id = e.currentTarget.dataset.id;

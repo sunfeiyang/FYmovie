@@ -15,6 +15,11 @@ Page({
       loading: isload,
       comp: comp,
       findInput: '',
+      banner: ['https://img3.doubanio.com/view/photo/l/public/p2534612843.jpg',
+        'https://img3.doubanio.com/view/photo/m/public/p2534624306.jpg',
+        'https://img3.doubanio.com/view/photo/m/public/p2520354952.jpg',
+        'https://img3.doubanio.com/view/photo/m/public/p2515009651.jpg',
+        'https://img1.doubanio.com/view/photo/m/public/p2536318827.jpg'],
 
   },
   //获取搜索框中的内容

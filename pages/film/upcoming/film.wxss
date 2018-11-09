@@ -89,10 +89,10 @@
 	text-align: center;
 	color:#999;
 	font-size:16px;
-  margin-top:20px;
+  margin-top:10px;
 }
 .complete{
 	text-align: center;
 	color:#999;
-	font-size:16px;
+	font-size:10px;
 }

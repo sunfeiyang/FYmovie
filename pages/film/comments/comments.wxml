@@ -1,0 +1,21 @@
+<scroll-view class='comment' scroll-y="true" bindscrolltolower="lower" bindscrolltoupper="bindscrolltoupper" style="height:{{scrollHeight}}px" >
+  <view class='item' wx:for='{{detail}}' wx:key='{{index}}'>
+    <view class='img'>
+      <image src='{{item.author.avatar}}' />
+    </view>
+    <view class='main'>
+      <view class='nickname'  style='font-size:18px;color:#ccb3ff;' >{{item.title}}</view><image wx:for='{{item.rating.value}}'src='/img/pingfen.png' mode="aspectFit" style='width:30rpx;'/><text style='font-size:14px;color:#777; float:right;' >{{item.updated_at}}</text>
+      <view class='nickname'>{{item.author.name}}<text style='font-size:12px;'>    {{item.author.signature}}</text></view>
+      <view class='info' style='font-size:14px;color:#777;' >
+        <view class='text'>
+          <text style='{{hideText ? "-webkit-line-clamp: 5" : ""}}'>{{item.content}}</text>
+        </view>
+        <view class='controlText {{hideClass}}{{index}}' bindtap='toggleText' data-id="{{index}}" >
+          <text></text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='loading' hidden='{{!loading}}'>正在加载...</view>
+</scroll-view>
+
